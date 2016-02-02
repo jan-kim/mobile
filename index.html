@@ -1,1 +1,400 @@
-Test
+<style>
+	* {
+		transition: all .5s;
+		margin: 0px;
+		padding: 0px;
+		font-family: Arial;
+		color: #888;
+		font-size: 12px;
+	}
+	
+	body {
+		background-color: #333;
+	}
+
+	.mobile {
+		position: relative;
+		margin: 0 auto;
+		top: 0px;
+		left: 0px;
+		width: 500px;
+	}
+
+	.screen {
+		background: url('iphone4-2.png');
+		background-size: 100%;
+		border: 0px;
+		width: 275px;
+		height: 514px;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	.page {
+		position: absolute;
+		width: 231px;
+		top: 169px;
+		left: 22px;
+		z-index: 0;
+	}
+	
+	.header-time {
+		position: fixed;
+		width: 231px;
+		height: 46px;
+		background: url('header-time.png') no-repeat;
+		background-size: 100%;
+		top: 87px;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+	.mini-header {
+		position: fixed;
+		width: 231px;
+		height: 46px;
+		background: #F6F6F6 url('header-minitime.png') no-repeat;
+		background-size: 100%;
+		top: 87px;
+		margin-left: 22px;
+		z-index: 0;
+	}
+	
+	.mini-header-move {
+		position: fixed;
+		width: 231px;
+		height: 28px;
+		background: #F6F6F6 url('header-minitime.png') no-repeat;
+		background-size: 100%;
+		top: 87px;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+	.header-minitime {
+		transition: all .4s;
+		position: fixed;
+		width: 231px;
+		height: 46px;
+		background: url('header-time.png') no-repeat;
+		background-position: 0px -46px;
+		background-size: 100%;
+		top: 87px;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+	.logo-norm {
+		margin-top: 0px;
+	}
+	
+	.logo-move {
+		margin-top: -18px;
+	}
+	
+	.footer-norm {
+		position: fixed;
+		width: 231px;
+		height: 46px;
+		background: url('footer.png') no-repeat;
+		background-size: 100%;
+		top: 403px;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+	.footer-move {
+		position: fixed;
+		width: 231px;
+		height: 32px;
+		background: url('footer.png') no-repeat;
+		background-position: 0px 32px;
+		background-size: 100%;
+		top: 403px;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+	input#url {
+/* 
+		background: #eee;
+		border: 1px solid #ddd;
+		padding: 5px;
+		width: 100%;
+ */
+		background: #444;
+		border: 1px solid #666;
+		padding: 7px;
+		width: 100%;
+	}
+	
+	#page1[src='entersomething.png'] {
+		display: ;
+	}
+	
+	
+	#url-box {
+		position: absolute;
+		width: 200px;
+		left: 300px;
+		top: 50px;
+	}
+
+	input[type=radio], p {
+		position: relative;
+		width: 200px;
+		left: 300px;
+		top: 90px;
+		display: block;
+		margin: 0 0 10px 0;
+	} 
+
+	input[type=radio]:checked {
+/* 
+		font-weight: bold;
+ */
+		color: #ccc;
+	} 
+	
+	input:after {
+		padding-left: 20px;
+	} 
+	
+	
+	input[id=uber-header]:checked ~ .page {
+		top: 133px;
+	} 
+	input[id=uber-header]:after {
+		content:"header + uber bar";
+	} 
+	
+	
+	input[id=normal-header]:checked ~ .page {
+		top: 169px;
+	} 
+	input[id=normal-header]:after {
+		content:"header";
+	}
+	
+	
+/* 
+	input[id=landing-logo]:checked ~ .page {
+		top: 152px;
+	}  
+	input[id=landing-logo]:after {
+		content:"landing page header";
+	} 
+ */
+	
+	
+	input[id=no-header]:checked ~ .page {
+		top: 205px;
+	}  
+	input[id=no-header]:after {
+		content:"no header";
+	} 
+	
+	
+	input[id=screencap]:checked ~ .page {
+		top: 170px;
+		width: 237px;
+	}  
+	input[id=screencap]:after {
+		content:"screencap";
+	} 
+	
+
+
+
+	input[id=type-uber-header]:after {
+		content:"header + uber bar";
+	} 
+
+	input[id=type-normal-header]:after {
+		content:"header (normal)";
+	} 
+
+	input[id=type-landing-logo]:after {
+		content:"header (landing pg)";
+	} 
+	
+	#logos {
+		display: none;
+		transition: all .4s;
+		position: fixed;
+		width: 231px;
+		top: 133px;
+		background-size: 100%;
+		margin-left: 22px;
+		z-index: 1;
+	}
+	
+/* 
+	.show-uber-header {
+		height: 76px;
+		background: url('kiwilogo-uber.png') no-repeat;
+	}
+	
+	.show-normal-header {
+		height: 76px;
+		background: url('kiwilogo.png') no-repeat;
+	}
+	
+	.show-landing-logo {
+		height: 76px;
+		background: url('kiwilogo.png') no-repeat;
+	}
+ */
+	
+	
+	
+	input[id=type-uber-header]:checked ~ #logos{
+		display:block;
+		height: 76px;
+		background: url('kiwilogo-uber.png') no-repeat;
+		background-size: 100%;
+	} 
+		
+	input[id=type-normal-header]:checked ~ #logos{
+		display:block;
+		height: 76px;
+		background: url('kiwilogo.png') no-repeat;
+		background-size: 100%;
+	} 
+		
+	input[id=type-landing-logo]:checked ~ #logos{
+		display:block;
+		height: 76px;
+		background: url('kiwilogo-landing.png') no-repeat;
+		background-size: 100%;
+	} 
+	
+/* 
+	input[id=type-normal-header]:checked ~ #logos.show-normal-header{
+		display:block;
+	} 
+ */
+	
+</style>
+
+
+
+
+<div class="mobile">
+
+
+	<form id="url-box" name="form" action="#" onsubmit="clicked(event)">
+	  <input type="text" name="subject" id="url" value="" placeholder="enter image url and press enter!">
+	</form>
+	
+		
+	<div class="screen"></div>
+	
+<br><br>
+	
+	<p><strong><u>This page will have (on Live):</u></strong></p>
+	<form>
+	<input type="radio" id="type-uber-header" name="type" checked>
+	<input type="radio" id="type-normal-header" name="type">
+	<input type="radio" id="type-landing-logo" name="type">
+	
+	
+<!-- 
+	<div id="logos" class="logo-norm show-uber-header show-normal-header show-landing-logo"></div>
+ -->
+	<div id="logos" class="logo-norm"></div>
+	<div id="mini-header" class="mini-header"></div>
+	<div id="header" class="header-time"></div>
+	</form>
+	
+<br><br>	
+
+	<p><strong><u>Design mock has:</u></strong></p>
+	<form>
+	<input type="radio" id="no-header" name="design" checked>
+	<input type="radio" id="uber-header" name="design">
+	<input type="radio" id="normal-header" name="design">
+	
+
+	<img id="page1" class="page" src="entersomething.png">
+	</form>
+
+
+	
+	
+	<div id="footer" class="footer-norm"></div>
+	
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script>
+
+
+
+
+$(document).ready(function(){
+    $('input').on('click',function () {
+        if ($('#type-uber-header').is(':checked')) {
+            $('#page1').css('margin-top', '0px');
+        } 
+        else if ($('#type-normal-header').is(':checked')) {
+            $('#page1').css('margin-top', '-36px');
+        } 
+        else if ($('#type-landing-logo').is(':checked')) {
+            $('#page1').css('margin-top', '-36px');
+        } 
+    });
+});
+
+
+
+	function clicked() {
+		var input_value = document.getElementById('url').value;
+		document.getElementById('page1').src = input_value;
+	}
+
+
+// 		if(document.getElementById("type-uber-header").checked) {
+// 			document.getElementById("logos").className = "show-uber-header";
+// // 			document.getElementsByClassName("show-uber-header").style["display"] = "block";
+// // 			document.getElementsByClassName("show-normal-header").style["display"] = "none";
+// // 			document.getElementsByClassName("show-landing-logo").style["display"] = "none";
+// 		}
+// 		else if(document.getElementById("type-normal-header").checked) {
+// 			document.getElementById("logos").className = "show-normal-header";
+// 		}
+// 		else {
+// 			document.getElementById("logos").className = "show-landing-logo";
+// 		}
+
+
+
+
+	var obj = document.getElementById('page1');
+	obj.style["padding-bottom"] = window.innerHeight - "436";
+
+
+	window.onscroll = function() {
+		myFunction()
+	};
+
+	function myFunction() {
+		if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+			document.getElementById("header").className = "header-minitime";
+			document.getElementById("logos").className = "logo-move";
+			document.getElementById("footer").className = "footer-move";
+			document.getElementById("mini-header").className = "mini-header-move";
+		} else {
+			document.getElementById("header").className = "header-time";
+			document.getElementById("logos").className = "logo-norm";
+			document.getElementById("footer").className = "footer-norm";
+			document.getElementById("mini-header").className = "mini-header";
+		}
+	}
+
+
+</script>
