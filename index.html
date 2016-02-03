@@ -145,7 +145,7 @@
 		top: 50px;
 	}
 
-	input[type=radio], p {
+	input[type=radio], input[type=checkbox], p {
 		position: relative;
 		width: 200px;
 		left: 300px;
@@ -154,7 +154,7 @@
 		margin: 0 0 10px 0;
 	} 
 
-	input[type=radio]:checked {
+	input[type=radio]:checked, input[type=checkbox]:checked {
 /* 
 		font-weight: bold;
  */
@@ -285,50 +285,39 @@
 
 
 
+
+
 <div class="mobile">
 
-
 	<form id="url-box" name="form" action="#" onsubmit="clicked(event)">
-	  <input type="text" name="subject" id="url" value="" placeholder="enter image url and press enter!">
+		<input type="text" name="subject" id="url" value="" placeholder="enter image url and press enter!">
 	</form>
-	
 		
 	<div class="screen"></div>
 	
-<br><br>
+	<br><br>
 	
-	<p><strong><u>This page will have (on Live):</u></strong></p>
 	<form>
-	<input type="radio" id="type-uber-header" name="type" checked>
-	<input type="radio" id="type-normal-header" name="type">
-	<input type="radio" id="type-landing-logo" name="type">
+		<p><strong><u>This page will have (on Live):</u></strong></p>
+		<input type="radio" id="type-uber-header" name="type" checked>
+		<input type="radio" id="type-normal-header" name="type">
+		<input type="radio" id="type-landing-logo" name="type">
+
+		<div id="logos" class="logo-norm"></div>
+		<div id="mini-header" class="mini-header"></div>
+		<div id="header" class="header-time"></div>
 	
-	
-<!-- 
-	<div id="logos" class="logo-norm show-uber-header show-normal-header show-landing-logo"></div>
- -->
-	<div id="logos" class="logo-norm"></div>
-	<div id="mini-header" class="mini-header"></div>
-	<div id="header" class="header-time"></div>
+		<br><br>	
+
+		<p><strong><u>Design mock has:</u></strong></p>
+		<input type="radio" id="no-header" name="design" checked>
+		<input type="radio" id="uber-header" name="design">
+		<input type="radio" id="normal-header" name="design">
+
+		<img id="page1" class="page" src="https://cloud.githubusercontent.com/assets/17034839/12766580/77b57d2c-c9b9-11e5-8ae2-fc71eaf451ee.png">
+		
+		<div id="footer" class="footer-norm"></div>
 	</form>
-	
-<br><br>	
-
-	<p><strong><u>Design mock has:</u></strong></p>
-	<form>
-	<input type="radio" id="no-header" name="design" checked>
-	<input type="radio" id="uber-header" name="design">
-	<input type="radio" id="normal-header" name="design">
-	
-
-	<img id="page1" class="page" src="https://cloud.githubusercontent.com/assets/17034839/12766580/77b57d2c-c9b9-11e5-8ae2-fc71eaf451ee.png">
-	</form>
-
-
-	
-	
-	<div id="footer" class="footer-norm"></div>
-	
 
 </div>
 
@@ -338,32 +327,30 @@
 
 <script>
 
-
-
-
-$(document).ready(function(){
-    $('input').on('click',function () {
-        if ($('#type-uber-header').is(':checked')) {
-            $('#page1').css('margin-top', '0px');
-        } 
-        else if ($('#type-normal-header').is(':checked')) {
-            $('#page1').css('margin-top', '-36px');
-        } 
-        else if ($('#type-landing-logo').is(':checked')) {
-            $('#page1').css('margin-top', '-36px');
-        } 
-    });
-});
-
-
+	$(document).ready(function(){
+		$('input').on('click',function () {
+			if ($('#type-uber-header').is(':checked')) {
+				$('#page1').css('margin-top', '0px');
+			} 
+			else if ($('#type-normal-header').is(':checked')) {
+				$('#page1').css('margin-top', '-36px');
+			} 
+			else if ($('#type-landing-logo').is(':checked')) {
+				$('#page1').css('margin-top', '-36px');
+			} 
+		});
+	});
 
 // 	function clicked() {
 // 		document.getElementById('page1').src = document.getElementById('url').value;
 // 	}
 
-	if (keypress == 13) {
-		document.getElementById('page1').src = document.getElementById('url').value;
-	}
+	$("#url-box").keypress(function (e) {
+		if (e.keyCode === 13) {
+			var input_value = document.getElementById('url').value;
+			document.getElementById('page1').src = input_value;
+		}
+	});
 
 
 // 		if(document.getElementById("type-uber-header").checked) {
